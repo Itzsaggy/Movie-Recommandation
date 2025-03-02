@@ -7,7 +7,7 @@ from collections import defaultdict
 import pandas as pd
 
 # Define the Flask app first
-app = Flask(__name__, static_folder='../dist')  # Serve React build from dist folder
+app = Flask(__name__, static_folder='./dist')  # Serve React build from dist folder
 CORS(app, resources={r"/api/*": {"origins": "*"}, r"/*": {"origins": "*"}}, supports_credentials=True)
 
 # TMDB API setup
