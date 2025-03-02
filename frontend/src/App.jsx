@@ -26,7 +26,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/recommend', {
+      const response = await fetch('https://movie-recommendation-jngm.onrender.com/recommend', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ genre, mood }),
@@ -45,7 +45,7 @@ function App() {
 
   const handleFeedback = async (title, score) => {
     try {
-      const response = await fetch('http://localhost:5000/feedback', {
+      const response = await fetch('https://movie-recommendation-jngm.onrender.com/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, score }),
@@ -63,7 +63,7 @@ function App() {
   const toggleFavorite = async (title, isFavorite) => {
     const action = isFavorite ? 'remove' : 'add';
     try {
-      const response = await fetch('http://localhost:5000/favorite', {
+      const response = await fetch('https://movie-recommendation-jngm.onrender.com/favorite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title, action }),
@@ -71,7 +71,7 @@ function App() {
       if (!response.ok) {
         throw new Error('Favorite action failed');
       }
-      const favoriteResponse = await fetch('http://localhost:5000/favorites');
+      const favoriteResponse = await fetch('https://movie-recommendation-jngm.onrender.com/favorites');
       if (!favoriteResponse.ok) {
         throw new Error('Failed to fetch favorites');
       }
@@ -86,7 +86,7 @@ function App() {
     const fetchFavorites = async () => {
       for (let attempt = 0; attempt < 3; attempt++) {
         try {
-          const response = await fetch('http://localhost:5000/favorites');
+          const response = await fetch('https://movie-recommendation-jngm.onrender.com/favorites');
           if (response.status === 200) {
             const data = await response.json();
             setFavorites(data.favorites || []);
@@ -103,7 +103,7 @@ function App() {
     // Update profile when genre or mood changes
     const updateProfile = async () => {
       try {
-        const response = await fetch('http://localhost:5000/profile', {
+        const response = await fetch('https://movie-recommendation-jngm.onrender.com/profile', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id: 'default', preferred_genres: [genre], mood }),
